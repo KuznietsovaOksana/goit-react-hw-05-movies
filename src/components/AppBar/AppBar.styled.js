@@ -3,15 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 export const Box = styled.header`
   font-size: 32px;
-  padding: 16px 32px;
   text-transform: uppercase;
+  border-bottom: 2px solid black;
 `;
 
 export const Nav = styled.header`
   display: flex;
-  gap: 64px;
+  justify-content: space-around;
   font-size: 32px;
-  padding: 16px 32px;
+  padding: 16px;
   text-transform: uppercase;
 `;
 

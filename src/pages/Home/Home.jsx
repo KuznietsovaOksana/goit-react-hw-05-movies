@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Title, List, Item, NavItem } from './Home.styled';
 import { getTrendingMovies } from 'services/api';
 
 export const Home = () => {
@@ -18,17 +18,19 @@ export const Home = () => {
   }, []);
 
   return (
-    <main>
-      <h2>Trending movies for today</h2>
-      <ul>
+    <Box>
+      <Title>Trending today</Title>
+      <List>
         {movies.map(({ name, title, id }) => {
           return (
-            <Link key={id} to={`${id}`}>
-              <h2>{name || title}</h2>
-            </Link>
+            <Item key={id}>
+              <NavItem to={`${id}`}>
+                <h3>{name || title}</h3>
+              </NavItem>
+            </Item>
           );
         })}
-      </ul>
-    </main>
+      </List>
+    </Box>
   );
 };
