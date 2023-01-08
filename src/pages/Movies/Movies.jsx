@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
 export const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  // const [movies, setMovies] = useState([]);
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return <>Movies</>;
 };
