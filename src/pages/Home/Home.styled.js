@@ -16,7 +16,7 @@ export const Title = styled.h2`
 `;
 
 export const List = styled.ul`
-  font-size: 24px;
+  font-size: 20px;
 `;
 
 export const Item = styled.li`
