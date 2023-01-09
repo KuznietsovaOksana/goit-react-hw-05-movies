@@ -31,10 +31,10 @@ export const getMovieById = async id => {
 
 export const getMovieCast = async id => {
   const { data } = await axios.get(`movie/${id}/credits`);
-  return data;
+  return data.cast;
 };
 
 export const getMovieReviews = async id => {
   const { data } = await axios.get(`movie/${id}/reviews`);
-  return data;
+  return data.results;
 };
