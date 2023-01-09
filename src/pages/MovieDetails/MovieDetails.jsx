@@ -11,9 +11,7 @@ import {
   Rating,
   Overview,
   OverviewInfo,
-  Genres,
-  Details,
-  InfoTitle,
+  Title,
   LinkItem,
   Error,
 } from './MovieDetails.styled';
@@ -83,12 +81,12 @@ export const MovieDetails = () => {
                   <Rating>Rating: {vote_average || 'Not found'}</Rating>
                   <Overview>Overview:</Overview>
                   <OverviewInfo>{overview || 'Not found'}</OverviewInfo>
-                  <Genres>Genres:</Genres>
+                  <Title>Genres:</Title>
                   <p>{genres || 'Others'}</p>
                 </div>
               </MovieBox>
-              <Details>
-                <InfoTitle>Additional information</InfoTitle>
+              <div>
+                <Title>Additional information</Title>
                 <ul>
                   <li>
                     <LinkItem to="cast">Cast</LinkItem>
@@ -97,7 +95,7 @@ export const MovieDetails = () => {
                     <LinkItem to="reviews">Reviews</LinkItem>
                   </li>
                 </ul>
-              </Details>
+              </div>
               <Outlet />
             </>
           )}

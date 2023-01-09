@@ -1,18 +1,30 @@
 import { useState, useEffect } from 'react';
-import { Box, Form, Button, Input } from './Movies.styled';
+import { Main, BoxForm, Form, Button, Input } from './Movies.styled';
 import { getMovieBySearch } from 'services/api';
 import { MovieList } from 'components/MovieList/MovieList';
+import { Loader } from 'components/Loader/Loader';
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!query) return;
-    getMovieBySearch(query).then(({ results }) => {
-      console.log(results);
-      setMovies(results);
-    });
+    if (!query) {
+      return;
+    }
+    const fetchMovies = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getMovieBySearch(query);
+        setMovies(data.results);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchMovies();
   }, [query]);
 
   const handleSubmit = event => {
@@ -23,8 +35,8 @@ export const Movies = () => {
   };
 
   return (
-    <>
-      <Box>
+    <Main>
+      <BoxForm>
         <Form onSubmit={handleSubmit}>
           <Button type="submit"></Button>
           <Input
@@ -35,8 +47,8 @@ export const Movies = () => {
             name="searchMovies"
           />
         </Form>
-      </Box>
-      {movies.length > 0 && <MovieList movies={movies} link={''} />}
-    </>
+      </BoxForm>
+      {isLoading ? <Loader /> : <MovieList movies={movies} link={''} />}
+    </Main>
   );
 };

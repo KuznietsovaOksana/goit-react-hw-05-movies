@@ -64,13 +64,7 @@ export const OverviewInfo = styled.p`
   margin-bottom: 16px;
 `;
 
-export const Genres = styled.h3`
-  margin-bottom: 16px;
-`;
-
-export const Details = styled.main``;
-
-export const InfoTitle = styled.h3`
+export const Title = styled.h3`
   margin-bottom: 16px;
 `;
 
