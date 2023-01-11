@@ -22,7 +22,6 @@ export default function MovieDetails() {
   const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
-  console.log(location.state);
 
   const { movieId } = useParams();
 
