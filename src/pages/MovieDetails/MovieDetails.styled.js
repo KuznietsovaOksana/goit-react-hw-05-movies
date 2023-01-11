@@ -7,7 +7,7 @@ export const Box = styled.main`
   margin: 0 auto;
 `;
 
-export const ButtonGoBack = styled.button`
+export const ButtonGoBack = styled(Link)`
   display: inline-block;
   padding: 6px 16px;
   border: none;
