@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
 import { getMovieById } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
@@ -96,9 +96,7 @@ export default function MovieDetails() {
                   </li>
                 </ul>
               </div>
-              <Suspense fallback={<Loader />}>
-                <Outlet />
-              </Suspense>
+              <Outlet />
             </>
           )}
         </Box>
