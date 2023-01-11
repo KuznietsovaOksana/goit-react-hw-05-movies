@@ -4,7 +4,7 @@ import { getTrendingMovies } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
 import { MovieList } from 'components/MovieList/MovieList';
 
-export const Home = () => {
+export default function Home() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,4 +29,4 @@ export const Home = () => {
       {isLoading ? <Loader /> : <MovieList movies={movies} link={'movies/'} />}
     </Box>
   );
-};
+}

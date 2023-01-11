@@ -4,7 +4,7 @@ import { getMovieCast } from 'services/api';
 import { List, Item, Img, Text } from './Cast.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const Cast = () => {
+export default function Cast() {
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,32 +30,29 @@ export const Cast = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {cast.length > 0 ? (
-        isLoading ? (
-          <Loader />
-        ) : (
-          <List>
-            {cast.map(({ profile_path, character, original_name, id }) => {
-              return (
-                <Item key={id}>
-                  <Img
-                    src={
-                      profile_path
-                        ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                        : 'https://m.media-amazon.com/images/I/51dCwRZxtLL.jpg'
-                    }
-                    alt={original_name}
-                  />
-                  <Text>{original_name}</Text>
-                  <Text>"{character}"</Text>
-                </Item>
-              );
-            })}
-          </List>
-        )
+        <List>
+          {cast.map(({ profile_path, character, original_name, id }) => {
+            return (
+              <Item key={id}>
+                <Img
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                      : 'https://m.media-amazon.com/images/I/51dCwRZxtLL.jpg'
+                  }
+                  alt={original_name}
+                />
+                <Text>{original_name}</Text>
+                <Text>"{character}"</Text>
+              </Item>
+            );
+          })}
+        </List>
       ) : (
         <p>Sorry, there is no information</p>
       )}
     </>
   );
-};
+}

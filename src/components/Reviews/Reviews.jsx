@@ -4,7 +4,7 @@ import { getMovieReviews } from 'services/api';
 import { List, Item, Title, Text } from './Reviews.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const Reviews = () => {
+export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,24 +30,21 @@ export const Reviews = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {reviews.length > 0 ? (
-        isLoading ? (
-          <Loader />
-        ) : (
-          <List>
-            {reviews.map(({ author, content, id }) => {
-              return (
-                <Item key={id}>
-                  <Title>Author: {author}</Title>
-                  <Text>"{content}"</Text>
-                </Item>
-              );
-            })}
-          </List>
-        )
+        <List>
+          {reviews.map(({ author, content, id }) => {
+            return (
+              <Item key={id}>
+                <Title>Author: {author}</Title>
+                <Text>"{content}"</Text>
+              </Item>
+            );
+          })}
+        </List>
       ) : (
         <p>Sorry, there is no information</p>
       )}
     </>
   );
-};
+}

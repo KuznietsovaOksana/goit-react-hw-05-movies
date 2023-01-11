@@ -4,7 +4,7 @@ import { getMovieBySearch } from 'services/api';
 import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 
-export const Movies = () => {
+export default function Movies() {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -51,4 +51,4 @@ export const Movies = () => {
       {isLoading ? <Loader /> : <MovieList movies={movies} link={''} />}
     </Main>
   );
-};
+}

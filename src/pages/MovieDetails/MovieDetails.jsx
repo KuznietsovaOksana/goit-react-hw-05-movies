@@ -1,5 +1,5 @@
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { getMovieById } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
 import {
@@ -16,7 +16,7 @@ import {
   Error,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState({});
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -96,11 +96,13 @@ export const MovieDetails = () => {
                   </li>
                 </ul>
               </div>
-              <Outlet />
+              <Suspense fallback={<Loader />}>
+                <Outlet />
+              </Suspense>
             </>
           )}
         </Box>
       )}
     </>
   );
-};
+}
