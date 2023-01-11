@@ -6,9 +6,9 @@ import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 
 export default function Movies() {
-  const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const movieName = searchParams.get('query') ?? '';
@@ -20,8 +20,8 @@ export default function Movies() {
     const fetchMovies = async () => {
       setIsLoading(true);
       try {
+        setSearchQuery(movieName);
         const data = await getMovieBySearch(movieName);
-        setQuery(movieName);
         setMovies(data.results);
       } catch (error) {
         console.log(error);
@@ -34,8 +34,7 @@ export default function Movies() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    const query = event.target.elements.searchMovies.value;
-    setSearchParams({ query: query });
+    setSearchParams({ query: searchQuery });
     event.target.reset();
   };
 
@@ -49,7 +48,8 @@ export default function Movies() {
             autoComplete="off"
             autoFocus
             placeholder="Search movies"
-            name="searchMovies"
+            name="movieName"
+            onChange={e => setSearchQuery(e.target.value)}
           />
         </Form>
       </BoxForm>
